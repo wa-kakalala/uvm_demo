@@ -2,15 +2,15 @@
 module ff_pipe #(
 	parameter WD = 8
 )(
-	input clk,
-	input rst_n,
+	input             clk    ,
+	input             rst_n  ,
 	
 	input   		  s_valid,
-	input  [WD - 1:0] s_data,
+	input  [WD - 1:0] s_data ,
 	output			  s_ready,
 	
 	output			  m_valid,
-	output [WD -1:0]  m_data,
+	output [WD -1:0]  m_data ,
 	input			  m_ready
 );
 
