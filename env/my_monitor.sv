@@ -5,7 +5,6 @@ class my_monitor extends uvm_monitor;
     // 如果是 in  monitor 就使用my_interface.pkt_drv -> vdrv
     // 如果是 out monitor 就使用my_interface.pkt_mon -> vmon;
 	virtual my_interface vif; 
-    // 需要补白皮书第4章的内容。
     // analysis port 与 IMP之间的通信是一种一对多的通信。(IMP端口用于接收通信请求，并且必须作为连接的终点)
     // 对于analysis port来说，只有一种操作就是write。
 	uvm_analysis_port #(my_transaction) ap;
