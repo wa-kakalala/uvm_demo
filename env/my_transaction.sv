@@ -8,7 +8,8 @@ class my_transaction extends uvm_sequence_item;
 	bit 	         par;
 	bit		 [8:0]   send_data;
 
-    // auto fields
+    // auto fields : copy , compare, print, unpack_bytes, pack_bytes
+    // 在ap.write中会使用到copy
 	`uvm_object_utils_begin(my_transaction)
 		`uvm_field_int(data, UVM_ALL_ON)
 		`uvm_field_int(par_err, UVM_ALL_ON)

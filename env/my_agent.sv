@@ -31,15 +31,15 @@ function void my_agent::build_phase(uvm_phase phase);
 	end
     uvm_config_db#(virtual my_interface)::set(this, "drv", "vif", vif);
     uvm_config_db#(virtual my_interface)::set(this, "mon", "vif", vif);
-    uvm_config_db#(virtual my_interface)::set(this, "rdy", "vif", vif);
+    // uvm_config_db#(virtual my_interface)::set(this, "rdy", "vif", vif);
 
 	if(is_active == UVM_ACTIVE) begin
 		sqr = my_sequencer::type_id::create("sqr", this);
 		drv = my_driver::type_id::create("drv", this);
 	end
-    if(rdy_en == 1)begin
-        rdy = my_ready_drv::type_id::create("rdy", this);
-    end
+    // if(rdy_en == 1)begin
+    //     rdy = my_ready_drv::type_id::create("rdy", this);
+    // end
 	mon = my_monitor::type_id::create("mon", this);
     out_fifo = new("out_fifo", this);
 endfunction: build_phase
