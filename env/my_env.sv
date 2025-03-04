@@ -2,7 +2,6 @@
 `define MY_ENV_SV
 
 class my_env extends uvm_env;
-	
 	my_agent i_agt0;
 	my_agent i_agt1;
 	my_agent o_agt;

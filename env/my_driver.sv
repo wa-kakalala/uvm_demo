@@ -3,7 +3,6 @@
 
 // 针对my_transaction 类型的transaction进行驱动
 class my_driver extends uvm_driver #(my_transaction);
-
 	virtual my_interface vif;
     int aa_cnt;
 	`uvm_component_utils(my_driver)
@@ -14,7 +13,6 @@ class my_driver extends uvm_driver #(my_transaction);
     extern virtual function void report_phase(uvm_phase phase);
 	extern virtual task drive_pkt(my_transaction pkt);
 	extern virtual task drive_idle();
-	
 
 endclass: my_driver
 

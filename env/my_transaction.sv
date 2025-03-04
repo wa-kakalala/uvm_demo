@@ -18,7 +18,7 @@ class my_transaction extends uvm_sequence_item;
 	constraint par_cons{
 		par_err dist {0:/90, 1:/10};
         // par_err : 90% -> 0
-        // par_err : 10% -> 10
+        // par_err : 10% -> 1
 	}
 	
     // 应该打开这个宏

@@ -5,7 +5,7 @@ class my_agent #(parameter WD = 8) extends uvm_agent;
 	my_sequencer     sqr;
 	my_driver        drv;
 	my_monitor       mon;
-    my_ready_drv     rdy;
+    // my_ready_drv     rdy;
 
     bit rdy_en;
 
@@ -29,11 +29,12 @@ function void my_agent::build_phase(uvm_phase phase);
     if(!uvm_config_db #(virtual my_interface)::get(this, "", "vif", vif))begin
 		`uvm_fatal("my_driver", "virtual interface get fatal");
 	end
-    uvm_config_db#(virtual my_interface)::set(this, "drv", "vif", vif);
+
     uvm_config_db#(virtual my_interface)::set(this, "mon", "vif", vif);
     // uvm_config_db#(virtual my_interface)::set(this, "rdy", "vif", vif);
 
 	if(is_active == UVM_ACTIVE) begin
+        uvm_config_db#(virtual my_interface)::set(this, "drv", "vif", vif);
 		sqr = my_sequencer::type_id::create("sqr", this);
 		drv = my_driver::type_id::create("drv", this);
 	end

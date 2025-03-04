@@ -1,24 +1,24 @@
 module mul_trans #(
 	parameter WD = 9
 )(
-	input             clk     ,
-	input             rst_n   ,
-	
-	input   		  s0_valid,
-	input  [WD - 1:0] s0_data,
-	output			  s0_ready,
-
-	input   		  s1_valid,
-	input  [WD - 1:0] s1_data ,
-	output			  s1_ready,
-	
-	output			  m_valid ,
-	output [WD -1:0]  m_data  ,
+	input             clk         ,
+	input             rst_n       ,
+	    
+	input   		  s0_valid    ,
+	input  [WD - 1:0] s0_data     ,
+	output			  s0_ready    ,
+    
+	input   		  s1_valid    ,
+	input  [WD - 1:0] s1_data     ,
+	output			  s1_ready    ,
+	    
+	output			  m_valid     ,
+	output [WD -1:0]  m_data      ,
 	input			  m_ready
 );
 
 wire   		    s0_ff_valid;
-wire [WD - 1:0] s0_data_ff;
+wire [WD - 1:0] s0_data_ff ;
 wire		    s0_ff_ready;
 ff_pipe #(.WD(WD))
 u_s0_ff (
@@ -33,17 +33,17 @@ u_s0_ff (
 );
 
 wire   		    s1_ff_valid;
-wire [WD - 1:0] s1_data_ff;
+wire [WD - 1:0] s1_data_ff ;
 wire		    s1_ff_ready;
 ff_pipe #(.WD(WD))
 u_s1_ff (
-	.clk	 (clk),
-	.rst_n	 (rst_n),
-	.s_valid (s1_valid),
-	.s_data  (s1_data),
-	.s_ready (s1_ready),
+	.clk	 (clk        ),
+	.rst_n	 (rst_n      ),
+	.s_valid (s1_valid   ),
+	.s_data  (s1_data    ),
+	.s_ready (s1_ready   ),
 	.m_valid (s1_ff_valid),
-	.m_data  (s1_data_ff),
+	.m_data  (s1_data_ff ),
 	.m_ready (s1_ff_ready)	
 );
 
@@ -67,20 +67,20 @@ hand_merge #(.CHL(2))
 u_hand_merge(
 	.s_valid({s1_ff_valid, s0_ff_valid}),
 	.s_ready({s1_ff_ready, s0_ff_ready}),
-	.m_valid(out_valid),
-	.m_ready(out_ready)
+	.m_valid(out_valid                 ),
+	.m_ready(out_ready                 )
 );
 
 ff_pipe #(.WD(WD))
 u_out_pipe (
-	.clk	 (clk),
-	.rst_n	 (rst_n),
+	.clk	 (clk      ),
+	.rst_n	 (rst_n    ),
 	.s_valid (out_valid),
-	.s_data  (out_data),
+	.s_data  (out_data ),
 	.s_ready (out_ready),
-	.m_valid (m_valid),
-	.m_data  (m_data),
-	.m_ready (m_ready)	
+	.m_valid (m_valid  ),
+	.m_data  (m_data   ),
+	.m_ready (m_ready  )	
 );
 
 endmodule
