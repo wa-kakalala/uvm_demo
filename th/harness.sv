@@ -1,9 +1,11 @@
 `timescale 1ns/1ps
 
-module top;
+`include "env.sv"
+`include  "uvm_macros.svh"
 
-logic clk;
-logic rst_n;
+module harness;
+bit clk;
+bit rst_n;
 
 initial begin
    clk = 0;

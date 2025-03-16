@@ -1,6 +1,7 @@
 `ifndef MY_TRANSACTION_SV
 `define MY_TRANSACTION_SV
-
+`include  "uvm_macros.svh"
+import uvm_pkg::*;
 class my_transaction extends uvm_sequence_item;
 	rand bit [8-1:0] data;
 	rand bit	     par_err;
@@ -21,8 +22,12 @@ class my_transaction extends uvm_sequence_item;
         // par_err : 10% -> 1
 	}
 	
-    // 应该打开这个宏
-	`uvm_object_utils(my_transaction)
+    // 在UVM中
+    // uvm_object_utils_begin和uvm_object_utils_end宏用于需要自定义字段自动化。
+    // uvm_object_utils是它们的简化版本，用于无需字段自动化的情况。
+    // 二者是互斥的，使用uvm_object_utils_begin后，不需要再调用uvm_object_utils
+    // uvm_object_utils宏实际上是uvm_object_utils_begin和uvm_objecti_utils_end的简写形式
+	// `uvm_object_utils(my_transaction)
 	
 	extern function new(string name = "my_transaction");
 	extern virtual function void pack();

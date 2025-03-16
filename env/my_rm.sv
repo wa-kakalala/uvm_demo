@@ -7,7 +7,7 @@
     end\
     if(!$cast(to, from)) begin\
         `uvm_fatal("prj_cast", "cast fatal");\
-    end\
+    end
 
 class my_rm extends uvm_component;
 
@@ -68,7 +68,7 @@ task my_rm::main_phase(uvm_phase phase);
             wait(ch0_q.size() > 0 && ch1_q.size() > 0);
             tr0 = ch0_q.pop_front();
             tr1 = ch1_q.pop_front();
-            out_tr.data = tr0.data * tr1.data;
+            out_tr.data = tr0.data * tr1.data; // 隐含了一个截位的操作
             out_tr.par_err  = |out_tr.data;
             //`uvm_info("my_rm", $sformatf("pkt1 par_err = %0h", tr1.par_err), UVM_LOW);
             ap.write(out_tr);

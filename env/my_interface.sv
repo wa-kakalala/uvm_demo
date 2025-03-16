@@ -9,18 +9,18 @@ interface my_interface #(
     input rst_n
 );
 
-	logic [WD -1:0] data ;
-	logic 	        valid;
-	logic		    ready;
+logic [WD -1:0] data ;
+logic 	        valid;
+logic		    ready;
 
-	clocking drv @(posedge clk);
-		default input #1ps output #1ps;
-		output 	data;
-		output	valid;
-		input   ready;
-	endclocking : drv
-    // dut的输入驱动接口
-	modport pkt_drv (clocking drv);
+clocking drv @(posedge clk);
+    default input #1ps output #1ps;
+    output 	data ;
+    output	valid;
+    input   ready;
+endclocking : drv
+// dut的输入驱动接口
+modport pkt_drv (clocking drv);
 
 	clocking mon @(posedge clk);
 		default input #1ps output #1ps;

@@ -40,16 +40,14 @@ task my_scb::main_phase(uvm_phase phase);
                 result = get_actual.compare(tmp_tran); // tranaction 必须要实现 auto field
                 if(result) begin 
                    `uvm_info("my_scb", "Compare SUCCESSFULLY", UVM_LOW);
-                end
-                else begin
+                end else begin
                     `uvm_error("my_scb", "Compare FAILED");
                     $display("RM:");
                     tmp_tran.print(); // tranaction 必须要实现 auto field
                     $display("RTL:");
                     get_actual.print();
                 end
-            end
-            else begin
+            end else begin
                 `uvm_error("my_scb", "Received from DUT, while Expect Queue is empty");
                 get_actual.print();
             end 
